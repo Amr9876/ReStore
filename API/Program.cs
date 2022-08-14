@@ -11,6 +11,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StoreContext>(opt 
     => opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddCors();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -19,6 +21,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(opts => 
+{
+    opts.AllowAnyMethod()
+        .AllowAnyHeader()
+        .WithOrigins("http://localhost:5173");
+});
 
 app.UseAuthorization();
 app.UseDatabaseMigration();
