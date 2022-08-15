@@ -13,7 +13,11 @@ builder.Services.AddDbContext<StoreContext>(opt
 
 builder.Services.AddCors();
 
+builder.Services.AddDatabaseMigration();
+
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -30,7 +34,6 @@ app.UseCors(opts =>
 });
 
 app.UseAuthorization();
-app.UseDatabaseMigration();
 
 app.MapControllers();
 

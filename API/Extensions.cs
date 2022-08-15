@@ -3,10 +3,10 @@ namespace API;
 public static class Extensions
 {
     
-    public static IApplicationBuilder UseDatabaseMigration(this IApplicationBuilder app) 
+    public static IServiceCollection AddDatabaseMigration(this IServiceCollection app) 
     {
 
-        using var scope = app.ApplicationServices.CreateScope();
+        using var scope = app.BuildServiceProvider().CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<StoreContext>();
         var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
