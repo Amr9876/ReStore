@@ -3,6 +3,7 @@ import { AppBar, Badge, Box, IconButton, List, ListItem, Switch, Toolbar, Typogr
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useStoreContext } from "../context/StoreContext";
+import { useAppSelector } from "../store/configureStore";
 
 interface Props {
     lightMode: boolean
@@ -11,8 +12,6 @@ interface Props {
 
 const midLinks = [
   {title: 'catalog', path: '/catalog'},
-  {title: 'about', path: '/about'},
-  {title: 'contact', path: '/contact'},
 ]
 
 const rightLinks = [
@@ -39,7 +38,7 @@ const toolBarStyles = {
 
 function Header({ lightMode, handleThemeChange }: Props) {
 
-  const { basket } = useStoreContext();
+  const { basket } = useAppSelector(state => state.basket);
   const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (

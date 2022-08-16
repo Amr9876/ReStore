@@ -28,7 +28,10 @@ public class BasketController : ApiController
 
         var product = await _context.Products.FindAsync(productId);
 
-        if (product is null) return NotFound();
+        if (product is null) return BadRequest(new ProblemDetails 
+        {
+            Title = "Product not found",
+        });
 
         basket.AddItem(product, quantity);
 
