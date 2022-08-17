@@ -1,6 +1,6 @@
-namespace API;
+namespace API.Extensions;
 
-public static class Extensions
+public static class BaseExtensions
 {
     
     public static IServiceCollection AddDatabaseMigration(this IServiceCollection app) 

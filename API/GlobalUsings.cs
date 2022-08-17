@@ -1,9 +1,11 @@
 global using System.Net.Mime;
 global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Text.Json;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Mvc;
-global using API;
+global using API.Extensions;
 global using API.Entities;
 global using API.Data;
 global using API.Middlewares;
 global using API.DTOs;
+global using API.RequestHelpers;
