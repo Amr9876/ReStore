@@ -3,8 +3,31 @@ namespace API.Data;
 
 public static class DbInitializer
 {
-    public static void Initialize(StoreContext context)
+    public static async Task InitializeAsync(StoreContext context, UserManager<User> userManager)
     {
+        if (!userManager.Users.Any())
+        {
+            var user = new User 
+            {
+                UserName = "3ashmawy",
+                Email = "3ashmawy@imbaba.com"
+            };
+
+            await userManager.CreateAsync(user, "Pa$$w0rd");
+            await userManager.AddToRoleAsync(user, Roles.Member);
+
+            var admin = new User 
+            {
+                UserName = "admin",
+                Email = "admin@test.com"
+            };
+
+            await userManager.CreateAsync(admin, "Pa$$w0rd");
+            await userManager.AddToRolesAsync(admin, new[] { Roles.Member, Roles.Admin });
+
+            Console.WriteLine("Users Seeded!");
+        }
+
         if(context.Products.Any()) return;
 
         var products = new List<Product>
