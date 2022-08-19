@@ -18,6 +18,7 @@ import Register from "../../features/account/Register";
 import Login from "../../features/account/Login";
 import { fetchCurrentUser } from "../../features/account/accountSlice";
 import Verify from "./Verify";
+import Orders from "../../features/orders/Orders";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -67,6 +68,7 @@ function App() {
           <Route path='/server-error' element={<ServerError />} />
           <Route path='/basket' element={<BasketPage />} />
           <Route path='/checkout' element={<Verify component={CheckoutPage} />} />
+          <Route path='/orders' element={<Verify component={Orders} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='*' element={<NotFound />} />

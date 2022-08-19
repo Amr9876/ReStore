@@ -9,7 +9,7 @@ const sleep = () => new Promise(reslove => setTimeout(reslove, 500));
 axios.defaults.baseURL = 'http://localhost:5123/api/';
 axios.defaults.withCredentials = true;
 
-const responseBody = (response: AxiosResponse) => response;
+const responseBody = (response: AxiosResponse) => response.data;
 
 axios.interceptors.request.use(config => {
     const token = store.getState().account.user?.token;
@@ -89,7 +89,8 @@ const Basket = {
 const Account = {
     login: (values: any) => requests.post('account/login', values),
     register: (values: any) => requests.post('account/register', values),
-    currentUser: () => requests.get('account/currentUser')
+    currentUser: () => requests.get('account/currentUser'),
+    fetchAddress: () => requests.get('account/savedAddress')
 }
 
 const Orders = {

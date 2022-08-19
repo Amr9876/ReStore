@@ -1,5 +1,5 @@
 import { Box, Button, Paper, Step, StepLabel, Stepper, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
@@ -40,6 +40,15 @@ function CheckoutPage() {
         resolver: yupResolver(currentValidationSchema)
     });
 
+    useEffect(() => {
+        agent.Account.fetchAddress()
+            .then(response => {
+                if (response) {
+                    methods.reset({ ...methods.getValues(), ...response, saveAddress: false });
+                }
+            });
+    }, [methods]);
+
     const handleNext = async (data: FieldValues) => {
 
         const { nameOnCard, saveAddress, ...shippingAddress } = data;
@@ -47,7 +56,7 @@ function CheckoutPage() {
         if (activeStep === steps.length - 1) {
             setLoading(true);
             try {
-                const { data: orderNumber }  = await agent.Orders.create({ saveAddress, shippingAddress });
+                const orderNumber  = await agent.Orders.create({ saveAddress, shippingAddress });
                 setOrderNumber(orderNumber);
                 setActiveStep(activeStep + 1);
                 dispatch(clearBasket())
