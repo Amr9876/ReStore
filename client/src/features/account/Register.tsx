@@ -50,7 +50,7 @@ export default function Register() {
                 toast.success('Registration successful - you can now login');
                 navigate('/login');
               })
-              .catch(error => handleApiErrors(error)))} 
+              .catch((error: any) => handleApiErrors(error)))} 
            noValidate sx={{ mt: 1 }}>
         <TextField
           margin="normal"
@@ -59,7 +59,7 @@ export default function Register() {
           autoFocus
           {...register('username', { required: 'Username is required' })}
           error={!!errors.username}
-          helperText={errors?.username?.message}
+          helperText={errors?.username?.message?.toString()}
         />
         <TextField
           margin="normal"
@@ -72,7 +72,7 @@ export default function Register() {
               message: 'Not a valid email address'
             } })}
           error={!!errors.email}
-          helperText={errors?.email?.message}
+          helperText={errors?.email?.message?.toString()}
         />
         <TextField
           margin="normal"
@@ -86,7 +86,7 @@ export default function Register() {
               message: 'password does not meet complexity requirements'
             } })}
           error={!!errors.password}
-          helperText={errors?.password?.message}
+          helperText={errors?.password?.message?.toString()}
         />
         
         <LoadingButton

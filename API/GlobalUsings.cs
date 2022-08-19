@@ -20,3 +20,4 @@ global using API.DTOs;
 global using API.RequestHelpers;
 global using API.Core;
 global using API.Services;
+global using API.Entities.OrderAggregate;
