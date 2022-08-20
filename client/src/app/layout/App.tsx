@@ -11,7 +11,6 @@ import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import BasketPage from "../../features/basket/BasketPage";
 import LoadingComponent from "./LoadingComponent";
-import CheckoutPage from "../../features/checkout/CheckoutPage";
 import { useAppDispatch } from "../store/configureStore";
 import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import Register from "../../features/account/Register";
@@ -19,6 +18,7 @@ import Login from "../../features/account/Login";
 import { fetchCurrentUser } from "../../features/account/accountSlice";
 import Verify from "./Verify";
 import Orders from "../../features/orders/Orders";
+import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -67,7 +67,7 @@ function App() {
           <Route path='/catalog/:id' element={<ProductDetails />} />
           <Route path='/server-error' element={<ServerError />} />
           <Route path='/basket' element={<BasketPage />} />
-          <Route path='/checkout' element={<Verify component={CheckoutPage} />} />
+          <Route path='/checkout' element={<Verify component={CheckoutWrapper} />} />
           <Route path='/orders' element={<Verify component={Orders} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
