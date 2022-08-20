@@ -60,9 +60,11 @@ function App() {
       <ToastContainer theme="colored" position="bottom-right" hideProgressBar />
       <CssBaseline />
       <Header lightMode={lightMode} handleThemeChange={handleThemeChange} />
-      <Container>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+      </Routes>
+      <Container sx={{mt: 4}}>
+        <Routes>          
           <Route path='/catalog' element={<Catalog />} />
           <Route path='/catalog/:id' element={<ProductDetails />} />
           <Route path='/server-error' element={<ServerError />} />
@@ -71,7 +73,7 @@ function App() {
           <Route path='/orders' element={<Verify component={Orders} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
-          <Route path='*' element={<NotFound />} />
+          <Route element={<NotFound />} />
         </Routes>
       </Container>
     </ThemeProvider>

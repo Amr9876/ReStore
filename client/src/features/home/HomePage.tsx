@@ -1,11 +1,32 @@
-import { Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material";
+import Slider from "react-slick";
 
 function HomePage() {
-  
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+
   return (
-    <Typography variant='h2'>
-      Home page
-    </Typography>
+      <>
+          <Slider {...settings}>
+              <div>
+                  <img src="/images/hero1.jpg" alt="hero" style={{display: 'block', width: '100%', maxHeight: 500}} />
+              </div>
+              <div>
+                  <img src="/images/hero2.jpg" alt="hero" style={{display: 'block', width: '100%', maxHeight: 500}} />
+              </div>
+              <div>
+                  <img src="/images/hero3.jpg" alt="hero" style={{display: 'block', width: '100%', maxHeight: 500}} />
+              </div>
+          </Slider>
+          <Box display='flex' justifyContent='center'>
+              <Typography variant='h2'>Welcome to the store</Typography>
+          </Box>
+      </>
   )
 }
 
