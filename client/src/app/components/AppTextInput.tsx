@@ -3,6 +3,9 @@ import { useController, UseControllerProps } from "react-hook-form"
 
 interface Props extends UseControllerProps {
     label: string;
+    mutliline?: boolean;
+    rows?: number;
+    type?: string;
 }
 
 function AppTextInput(props: Props) {
@@ -13,6 +16,9 @@ function AppTextInput(props: Props) {
     <TextField
         {...props}
         {...field}
+        multiline={props.mutliline}
+        rows={props.rows}
+        type={props.type}
         fullWidth
         variant='outlined'
         error={!!fieldState.error}
