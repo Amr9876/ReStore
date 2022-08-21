@@ -2,7 +2,6 @@ import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/materia
 import { useCallback, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Catalog from "../../features/catalog/Catalog";
 import ProductDetails from "../../features/catalog/ProductDetails";
 import HomePage from "../../features/home/HomePage";
 import Header from "./Header";
@@ -19,6 +18,8 @@ import { fetchCurrentUser } from "../../features/account/accountSlice";
 import Verify from "./Verify";
 import Orders from "../../features/orders/Orders";
 import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
+import Inventory from "../../features/admin/Inventory";
+import Catalog from "../../features/catalog/Catalog";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -71,6 +72,7 @@ function App() {
           <Route path='/basket' element={<BasketPage />} />
           <Route path='/checkout' element={<Verify component={CheckoutWrapper} />} />
           <Route path='/orders' element={<Verify component={Orders} />} />
+          <Route path='/inventory' element={<Verify roles={['Admin']} component={Inventory} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route element={<NotFound />} />
